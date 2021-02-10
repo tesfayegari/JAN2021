@@ -1,0 +1,21 @@
+Trainings: List
+	Title
+	Description
+	StartDate 
+	EndDate
+	Location
+	MaximumSeat
+
+Registration: List 
+	Title (Change to Name)
+	Training (Lookup to the above list)
+
+
+Allow users to signup for a training 
+
+Allow Administrators to view who signed up, and how many for evert training
+
+When user signed up, they will get a notification about detail of the training they signed up for 
+
+
+
