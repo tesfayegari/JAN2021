@@ -1,0 +1,11 @@
+List Name: PTO Request
+Employee Name: People Picker
+Department: Choice (HR, IT, Sales, Marketing, Legal, Customer Service)
+Manager: People Picker
+Type of Request: Choice(Sick, Jury Duty, Vacation, Maternity)
+[Available PTO -- TBD]
+StartDate: Date Time (Date Only)
+End Date: Date Time (date only)
+Reason: Multi Line of text Plain text
+Request Status: Choice (Pending, Approved, Rejected, Need Change) 
+Manager Comment: Multi line of Text (Plain Text)

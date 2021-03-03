@@ -1,0 +1,27 @@
+HTML - Hyper Text Markup Language
+
+HTM Tags
+<tagName></tagName>
+
+Headings are 
+h1, h2, h3, h4, .... h6
+
+Paragraph 
+ p 
+
+Horizontal Line 
+ hr 
+
+ Link 
+  a required attribute href
+
+Images 
+img required src attribute
+
+block and inline  
+div and span 
+
+Table 
+ table, tr, td
+
+ The rest read from https://www.w3schools.com/

@@ -1,0 +1,34 @@
+Conditional Formatting 
+
+IF Condition Formula Syntax 
+
+IF(Test_Condtion, [WhenTrue], [WhenFalse])
+
+Test_Condition : is something that can be evaluated as true or false
+Ex 5 > 10 is false
+
+IF(YourForm.Mode = FormMode.New, Parent.DisplayMode.Edit, Parent.DisplayMode.View)
+
+In my environment 
+If(SharePointForm1.Mode = FormMode.New, Parent.DisplayMode.Edit,Parent.DisplayMode.View)
+
+If You want to make the field as currency, here is how I do it for USD 
+
+"$" & Text(Parent.Default, "0.00")
+
+Visiblity of Fields on the Form based on Form Type (Example below shows that The field is Hidden on New Item Form)
+If(SharePointForm1.Mode = FormMode.New, false, true)
+
+If we want to change background of any Card based on value of the field,
+
+If(Value(DataCardValue7.Text)>1000, Red, LightGreen)
+
+The above example checks the value of the DataCardValue7 changed to numeric and compared with 1000 if it is above the background will be RED otherwise its gonna be LightGreen
+
+Current User Formula is User()
+
+If Form is New then Show Read Only 
+If form is not new and CurrentUSer is a manager Show EditForm
+
+If(SharePointForm1.Mode = FormMode.New, Parent.DisplayMode.View, If(User().Email = ThisItem.Manager.Email, Parent.DisplayMode, Parent.DisplayMode.View) )
+
