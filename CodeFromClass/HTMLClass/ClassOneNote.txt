@@ -25,3 +25,40 @@ Table
  table, tr, td
 
  The rest read from https://www.w3schools.com/
+
+Cascading style sheet (CSS)
+
+selector {
+  property1 : value1; 
+  property2: value2; ....
+}
+
+Selector is either an html element or tag, or a class attribute or an ID attibute or a combination of all 
+
+example 
+Element selector 
+h1 {
+  color: red;
+  font-size: 20px;
+}
+
+class selector 
+
+.calassName {
+  color: red;
+  font-size: 24px;
+}
+
+ID Selector 
+
+#IDName {
+  color: red;
+  font-size: 24px;
+}
+
+
+combination 
+
+ul.table {
+  color: blue;
+}

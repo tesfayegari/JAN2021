@@ -5,7 +5,22 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My First HTML 5 Modified</title>
+  <title>My First HTML 5</title>
+  <style>
+    /* Your css goes here  */
+    .table {
+      color: darkgreen;
+      background-color: lightblue;
+    }
+
+    ul.table {
+      color: blue;
+    }
+
+    #orderedList {
+      background-color: lightcoral;
+    }
+  </style>
 </head>
 
 <body>
@@ -15,10 +30,12 @@
   <h3>This is my First HTML Heading 3</h3>
 
   <!-- Paragraphs  -->
-  <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some
+  <p class="table">There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+    alteration in some
     form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a
     passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. </p>
   <hr>
+  <h1>Testing </h1>
   <p>All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first
     true
     generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence
@@ -26,17 +43,124 @@
     repetition, injected humour, or non-characteristic words etc.</p>
   <hr>
   <!-- Links  -->
-  <a href="https://google.com" target="_blank" rel="noopener noreferrer">Google</a>  |
-  <a href="https://amazon.com" target="_blank" rel="noopener noreferrer">Amazon</a>  |
-  <a href="https://yahoo.com" target="_blank" rel="noopener noreferrer">Yahoo</a>  |
+  <a href="https://google.com" target="_blank" rel="noopener noreferrer">Google</a> |
+  <a href="https://amazon.com" target="_blank" rel="noopener noreferrer">Amazon</a> |
+  <a href="https://yahoo.com">Yahoo</a> |
 
   <!-- Horizontal Line  -->
   <hr>
 
   <!-- Images  -->
-  <img src="https://www.readersdigest.ca/wp-content/uploads/2013/03/6-facts-to-know-before-owning-a-puppy.jpg" alt="Puppy" width="300px">
-  <img src="https://www.readersdigest.ca/wp-content/uploads/2013/03/6-facts-to-know-before-owning-a-puppy.jpg" alt="Puppy" width="300px">
-  <img src="https://www.readersdigest.ca/wp-content/uploads/2013/03/6-facts-to-know-before-owning-a-puppy.jpg" alt="Puppy" width="300px">
+  <img src="https://www.readersdigest.ca/wp-content/uploads/2013/03/6-facts-to-know-before-owning-a-puppy.jpg"
+    alt="Puppy" width="300px">
+  <img src="https://www.readersdigest.ca/wp-content/uploads/2013/03/6-facts-to-know-before-owning-a-puppy.jpg"
+    alt="Puppy" width="300px">
+  <img src="https://www.readersdigest.ca/wp-content/uploads/2013/03/6-facts-to-know-before-owning-a-puppy.jpg"
+    alt="Puppy" width="300px">
+  <img src="https://www.readersdigest.ca/wp-content/uploads/2013/03/6-facts-to-know-before-owning-a-puppy.jpg"
+    alt="Puppy" width="300px">
+  <img src="https://www.readersdigest.ca/wp-content/uploads/2013/03/6-facts-to-know-before-owning-a-puppy.jpg"
+    alt="Puppy" width="300px">
+
+  <!-- Table table, tr, td, th (heading cell) -->
+  <h3>List of My students</h3>
+  <table id="StudentsTable" border="1">
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+    </tr>
+    <tr>
+      <td>Jon Do</td>
+      <td>jon@email.com</td>
+      <td>456-587-5565</td>
+    </tr>
+    <tr>
+      <td>Tesfaye Gari</td>
+      <td>tesfaye@email.com</td>
+      <td>412-587-5565</td>
+    </tr>
+    <tr>
+      <td>Liya Fouse</td>
+      <td colspan="2">liya@email.com</td>
+      <!-- <td>589-587-5565</td> -->
+    </tr>
+    <tr>
+      <td>Bayisa Geme</td>
+      <td>bayisa@email.com</td>
+      <td>123-587-5565</td>
+    </tr>
+  </table>
+
+  <!-- Show all the five images in one row  -->
+  <table id="imagesTable" class="table class1">
+    <tr>
+      <td>
+        <a href="https://google.com" target="_blank">
+          <img width="100%"
+            src="https://www.readersdigest.ca/wp-content/uploads/2013/03/6-facts-to-know-before-owning-a-puppy.jpg"
+            alt="Puppy">
+        </a>
+      </td>
+      <td>
+        <img width="100%"
+          src="https://www.readersdigest.ca/wp-content/uploads/2013/03/6-facts-to-know-before-owning-a-puppy.jpg"
+          alt="Puppy">
+      </td>
+      <td>
+        <img width="100%"
+          src="https://www.readersdigest.ca/wp-content/uploads/2013/03/6-facts-to-know-before-owning-a-puppy.jpg"
+          alt="Puppy">
+      </td>
+      <td>
+        <img width="100%"
+          src="https://www.readersdigest.ca/wp-content/uploads/2013/03/6-facts-to-know-before-owning-a-puppy.jpg"
+          alt="Puppy">
+      </td>
+      <td>
+        <img width="100%"
+          src="https://www.readersdigest.ca/wp-content/uploads/2013/03/6-facts-to-know-before-owning-a-puppy.jpg"
+          alt="Puppy">
+      </td>
+    </tr>
+  </table>
+
+  <!-- Bulletted list and numbered list  ul or ol li  -->
+  <h3>Bulleted list </h3>
+  <ul id="orderedList" class="table">
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <ol>
+      <li>
+        Item 2.1
+      </li>
+      <li>
+        Item 2.1
+      </li>
+    </ol>
+    <li>Item 3</li>
+    <li>Item 4</li>
+    <li>Item 5</li>
+  </ul>
+
+  <h3>Numbered list </h3>
+  <ol id="numberedList" type="a">
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+    <li>Item 4</li>
+    <li>Item 5</li>
+  </ol>
+
+  <!-- Block and inline element  div and span -->
+  No element content
+  <div>content in a div</div>
+  <span>content in a span </span>
+  Another content with no element
+
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/eVIozKR9p50" frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+
 
 </body>
 
