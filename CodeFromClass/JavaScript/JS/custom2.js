@@ -106,13 +106,22 @@ for (var i = 1; i < 5; i++) {
 //  for(var i = 0; i < students.length; i++ ){
 //   document.getElementById('students').innerHTML += '<br>' + students[i].FullName;
 //  }
-var myHtml = "";
-for (var i = 0; i < students.length; i++) {
-  var st = students[i];
-  myHtml += '<li class="list-group-item"><b>Name:</b> ' + st.FullName + " <b>Email:</b> " + st.Email + '</li>';
+function displayStudentsInBulleted() {
+
+  var myHtml = "";
+  for (var i = 0; i < students.length; i++) {
+    var st = students[i];
+    myHtml += '<li class="list-group-item"><b>Name:</b> ' + st.FullName + " <b>Email:</b> " + st.Email + '</li>';
+  }
+
+  document.getElementById('students').innerHTML = '<ul class="list-group">' + myHtml + "</ul>";
+
+}
+function hideStudentsInBulleted() {
+  document.getElementById('students').innerHTML = '';
 }
 
-document.getElementById('students').innerHTML = '<ul class="list-group">' + myHtml + "</ul>";
+
 
 // var studentsList = '<tr>' +
 //                       '<td>Tesfaye Gari</td>' +
@@ -121,41 +130,42 @@ document.getElementById('students').innerHTML = '<ul class="list-group">' + myHt
 //                       '<td>22</td>' +
 //                     '</tr>';
 var studentsList = '';
-for(var i in students){
+for (var i in students) {
   var st = students[i];
-  studentsList  += '<tr>' +
-                    '<td>'+ st.FullName + '</td>' +
-                    '<td>'+ st.Email + '</td>' +
-                    '<td>'+ st.Phone + '</td>' +
-                    '<td>'+ st.Age + '</td>' +
-                  '</tr>';
+  studentsList += '<tr>' +
+    '<td>' + st.FullName + '</td>' +
+    '<td>' + st.Email + '</td>' +
+    '<td>' + st.Phone + '</td>' +
+    '<td>' + st.Age + '</td>' +
+    '</tr>';
 }
 // console.log('This is the output of the above',studentsList)
 
-var studentTable = '<table class="table table-bordered">' + 
-                      '<tr>' +
-                        '<th>Name</th>' +
-                        '<th>Email</th>' +
-                        '<th>Phone</th>' +
-                        '<th>Age</th>' +
-                      '</tr>' + 
-                      studentsList
-                       +
-                      '</table>';
+var studentTable = '<table class="table table-bordered">' +
+  '<tr>' +
+  '<th>Name</th>' +
+  '<th>Email</th>' +
+  '<th>Phone</th>' +
+  '<th>Age</th>' +
+  '</tr>' +
+  studentsList
+  +
+  '</table>';
 
 document.getElementById('studentsTable').innerHTML = studentTable;
 
 //ECMA SCRIPT 6/7 to do the same thing as above table
-var studentsList1 = '';
-for(var st of students){
-    studentsList1  += `<tr>
+function displayStudentInTable2() {
+  var studentsList1 = '';
+  for (var st of students) {
+    studentsList1 += `<tr>
                     <td>${st.FullName}</td> 
                     <td>${st.Email}</td>
                     <td>${st.Phone}</td> 
                     <td>${st.Age} </td> 
                   </tr>`;
-}
-var hardCodedHtml = ` <table class="table table-bordered"> 
+  }
+  var hardCodedHtml = ` <table class="table table-bordered"> 
                         <tr>
                           <th>Name</th>
                           <th>Email</th>
@@ -163,9 +173,11 @@ var hardCodedHtml = ` <table class="table table-bordered">
                           <th>Age</th>
                         </tr>
                           ${studentsList1}
-                        </table>`; 
+                        </table>`;
 
-document.getElementById('studentsTable1').innerHTML = hardCodedHtml;
+  document.getElementById('studentsTable1').innerHTML = hardCodedHtml;
+}
 
-
-
+function hideStudentInTable2(){
+  document.getElementById('studentsTable1').innerHTML ='';
+}
