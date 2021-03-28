@@ -8,6 +8,7 @@
   <title>More on jQuery</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
+
 <body>
 
   <div class="container mt-5">
@@ -44,15 +45,36 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
   <script>
-    $(document).ready(function (){
+    $(document).ready(function () {
       //All of my JS goes here
-      $('#searchButton').click(readSharePointData);
+      $('#searchButton').click(searchSampleExpenses);
 
-
-
-      function readSharePointData() {
+      function searchSampleExpenses() {
         console.log('Reading sharepoint data in progress ...');
         console.log('Searching  ...', $('#searchText').val());
+        //Calling the Ajax readSharePointData Function 
+        readSharePointData('SampleExpense')
+          .then(
+            function(response){
+              //success area 
+              console.log('We got list data from SharePoint successfullty ', response);
+              //TODO: code to generate the table 
+            },
+            function(error){console.error('Ooops error occured', error);}
+            );
+      }
+
+      //Reusable function 
+      function readSharePointData(listName) {        
+        var searchQuery = $('#searchText').val();
+        var siteUrl = _spPageContextInfo.webAbsoluteUrl;
+        var apiUrl = siteUrl + "/_api/web/lists/getbytitle('" + listName + "')/items?$filter=Title eq '" + searchQuery + "'";
+
+        return $.ajax({
+          url: apiUrl,
+          method: 'GET',
+          headers: { "Accept": "application/json; odata=nometadata" }
+        });
       }
 
 

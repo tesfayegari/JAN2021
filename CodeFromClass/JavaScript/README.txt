@@ -79,7 +79,30 @@ for( var i = 0; i< 20; i++){
   //Loop content block 
 }
 
+SharePoint REST API
 
+my sharepoint site url is https://url/sites/demo/
+
+Site information
+https://url/sites/demo/_api/site
+
+Web information
+https://url/sites/demo/_api/web
+
+To get all sharepoint lists 
+https://url/sites/demo/_api/web/lists
+
+To get One list by its list title 
+https://url/sites/demo/_api/web/lists/getbytitle('SampleExpense')
+
+To get all items in a list called SampleExpense we use the following url
+https://url/sites/demo/_api/web/lists/getbytitle('SampleExpense')/items
+
+To filter specific item in sharepoint list the following is how we  do 
+Syntax: ?$filter=columnName eq value (eq for equal neq not equal, lt for less than, gt for greater than, ...)
+
+Example: Filter where title is equal to Home
+https://url/sites/demo/_api/web/lists/getbytitle('SampleExpense')/items?$filter=Title  eq 'Home'
 
 
 
