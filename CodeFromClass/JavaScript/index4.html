@@ -14,7 +14,7 @@
     <div class="row">
       <div class="col">
         <div class="input-group mb-3">
-          <input type="text" id="searchText" class="form-control" placeholder="Search ...">
+          <input type="search" id="searchText" class="form-control" placeholder="Search ...">
           <div class="input-group-append">
             <input id="searchButton" class="btn btn-primary" type="button" value="Search">
           </div>
@@ -23,12 +23,42 @@
     </div>
     <div class="row">
       <div id="tableResult" class="col">
+        <table class="table table-striped">
+          <tr>
+            <th>Title</th>
+            <th>Department</th>
+            <th>Expense Date</th>
+            <th>Unit Price</th>
+            <th>Quantity</th>
+          </tr>
+          <tbody id="searchResult">
+
+          </tbody>
+
+        </table>
 
       </div>
     </div>
   </div>
   <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <script>
+    $(document).ready(function (){
+      //All of my JS goes here
+      $('#searchButton').click(readSharePointData);
+
+
+
+      function readSharePointData() {
+        console.log('Reading sharepoint data in progress ...');
+        console.log('Searching  ...', $('#searchText').val());
+      }
+
+
+      //end of my JS
+    });
+  </script>
 </body>
 
 </html>
