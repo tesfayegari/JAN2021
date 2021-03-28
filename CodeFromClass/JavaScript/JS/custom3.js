@@ -106,28 +106,13 @@ for (var i = 1; i < 5; i++) {
 //  for(var i = 0; i < students.length; i++ ){
 //   document.getElementById('students').innerHTML += '<br>' + students[i].FullName;
 //  }
-
-function displayStudentsInBulleted() {
-
-  var myHtml = "";
-  for (var i = 0; i < students.length; i++) {
-    var st = students[i];
-    myHtml += '<li class="list-group-item"><b>Name:</b> ' + st.FullName + " <b>Email:</b> " + st.Email + '</li>';
-  }
-
-  document.getElementById('students').innerHTML = '<ul class="list-group">' + myHtml + "</ul>";
-
-}
-function hideStudentsInBulleted() {
-  document.getElementById('students').innerHTML = '';
+var myHtml = "";
+for (var i = 0; i < students.length; i++) {
+  var st = students[i];
+  myHtml += '<li class="list-group-item"><b>Name:</b> ' + st.FullName + " <b>Email:</b> " + st.Email + '</li>';
 }
 
-function addNumbers(parameter1, parameter2){
-  //block of code goes here
-  console.log('The sum of the two numbers is  ', parameter1 + parameter2);
-}
-
-
+document.getElementById('students').innerHTML = '<ul class="list-group">' + myHtml + "</ul>";
 
 // var studentsList = '<tr>' +
 //                       '<td>Tesfaye Gari</td>' +
@@ -136,42 +121,41 @@ function addNumbers(parameter1, parameter2){
 //                       '<td>22</td>' +
 //                     '</tr>';
 var studentsList = '';
-for (var i in students) {
+for(var i in students){
   var st = students[i];
-  studentsList += '<tr>' +
-    '<td>' + st.FullName + '</td>' +
-    '<td>' + st.Email + '</td>' +
-    '<td>' + st.Phone + '</td>' +
-    '<td>' + st.Age + '</td>' +
-    '</tr>';
+  studentsList  += '<tr>' +
+                    '<td>'+ st.FullName + '</td>' +
+                    '<td>'+ st.Email + '</td>' +
+                    '<td>'+ st.Phone + '</td>' +
+                    '<td>'+ st.Age + '</td>' +
+                  '</tr>';
 }
 // console.log('This is the output of the above',studentsList)
 
-var studentTable = '<table class="table table-bordered">' +
-  '<tr>' +
-  '<th>Name</th>' +
-  '<th>Email</th>' +
-  '<th>Phone</th>' +
-  '<th>Age</th>' +
-  '</tr>' +
-  studentsList
-  +
-  '</table>';
+var studentTable = '<table class="table table-bordered">' + 
+                      '<tr>' +
+                        '<th>Name</th>' +
+                        '<th>Email</th>' +
+                        '<th>Phone</th>' +
+                        '<th>Age</th>' +
+                      '</tr>' + 
+                      studentsList
+                       +
+                      '</table>';
 
 document.getElementById('studentsTable').innerHTML = studentTable;
 
 //ECMA SCRIPT 6/7 to do the same thing as above table
-function displayStudentInTable2() {
-  var studentsList1 = '';
-  for (var st of students) {
-    studentsList1 += `<tr>
+var studentsList1 = '';
+for(var st of students){
+    studentsList1  += `<tr>
                     <td>${st.FullName}</td> 
                     <td>${st.Email}</td>
                     <td>${st.Phone}</td> 
                     <td>${st.Age} </td> 
                   </tr>`;
-  }
-  var hardCodedHtml = ` <table class="table table-bordered"> 
+}
+var hardCodedHtml = ` <table class="table table-bordered"> 
                         <tr>
                           <th>Name</th>
                           <th>Email</th>
@@ -179,38 +163,46 @@ function displayStudentInTable2() {
                           <th>Age</th>
                         </tr>
                           ${studentsList1}
-                        </table>`;
+                        </table>`; 
 
-  document.getElementById('studentsTable1').innerHTML = hardCodedHtml;
-}
+document.getElementById('studentsTable1').innerHTML = hardCodedHtml;
 
-function hideStudentInTable2() {
-  document.getElementById('studentsTable1').innerHTML = '';
-}
+//JQUERY Tutorial 
 
-//The above functions are void functions with no parameter
+$(document).ready(function (){
+  //Your JS Code goes here
+  
+  $('#bt1').click(function (){
+    $('#studentsTable').show();
+  });
+  $('#bt2').click(function (){
+    $('#studentsTable').hide();
+  });
+  $('#bt3').click(function (){
+    $('#studentsTable1').show();
+  });
+  $('#bt4').click(function (){
+    $('#studentsTable1').hide();
+  });
 
-// Function that accept parameter 
-function displayMe(action) {
-  if (action == 'show') {
-    document.getElementById('studentsTable').style.display = 'block';
-  } else if (action == 'hide') {
-    document.getElementById('studentsTable').style.display = 'none';
+  $('#btn5').click(showStudents);
+  // $('#btn5').click(function(){
+  //   $('#students').show();
+  // })
+  $('#btn6').click(hideStudents);
+  // $('#btn6').click(function(){
+  //   $('#students').hide();
+  // })
+  function showStudents(){
+    $('#students').show();
   }
+  function hideStudents(){
+    $('#students').hide();
+  } 
 
-}
+});
 
-// function that returns data 
-function getAge(dob) {
-  var today = new Date();
-  var db = new Date(dob)
-  var age = today.getFullYear() - db.getFullYear();
 
-  return age;
-}
 
-function getListItems(listName) {
-  //magic JS
 
-  return [];
-}
+
