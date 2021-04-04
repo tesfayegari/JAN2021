@@ -102,6 +102,10 @@ for (var i = 1; i < 5; i++) {
   document.getElementById('content').innerHTML += '<br>' + "Contnt Loop " + i;
 }
 
+for (var i = 10; i < 15; i++) {
+  document.getElementById('content').innerHTML += '<br>' + "Contnt Loop " + i;
+}
+
 //Displaying list of students in the students element ID
 //  for(var i = 0; i < students.length; i++ ){
 //   document.getElementById('students').innerHTML += '<br>' + students[i].FullName;

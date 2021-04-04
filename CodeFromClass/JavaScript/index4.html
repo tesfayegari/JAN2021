@@ -33,7 +33,13 @@
             <th>Quantity</th>
           </tr>
           <tbody id="searchResult">
-
+            <tr>
+              <td>Title 1</td>
+              <td>Dept 1</td>
+              <td>5/4/2020</td>
+              <td>$66.50</td>
+              <td>30</td>
+            </tr>
           </tbody>
 
         </table>
@@ -58,6 +64,22 @@
             function(response){
               //success area 
               console.log('We got list data from SharePoint successfullty ', response);
+              var items = response.value; // all the items that matched the title of the searched value
+              var resultHtml = '';
+              for(var i in items){
+                var item = items[i];
+                resultHtml += `
+                                <tr>
+                                  <td>${item.Title}</td>
+                                  <td>${item.Department}</td>
+                                  <td>${item.ExpenseDate}</td>
+                                  <td>$${item.UnitPrice}</td>
+                                  <td>${item.Quantity}</td>
+                                </tr>
+                                `;
+              }
+              //render the built html to the searchResult element 
+              $('#searchResult').html(resultHtml);
               //TODO: code to generate the table 
             },
             function(error){console.error('Ooops error occured', error);}
