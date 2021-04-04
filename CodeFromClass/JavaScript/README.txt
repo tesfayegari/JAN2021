@@ -107,4 +107,7 @@ https://url/sites/demo/_api/web/lists/getbytitle('SampleExpense')/items?$filter=
 Example: Filter where title is equal to Home or Department eqauls to Home  
 https://url/sites/demo/_api/web/lists/getbytitle('SampleExpense')/items?$filter=Title  eq 'Home' or Department eq 'Home'
 
+Example: Filter where title contains a word 'test'  
+https://url/sites/demo/_api/web/lists/getbytitle('SampleExpense')/items?$filter=substringof('test',Title)
+
 

@@ -23,7 +23,19 @@
       </div>
     </div>
     <div class="row">
-      <div id="tableResult" class="col">
+      <div class="col my-2 text-center">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" checked name="gridChoice" id="tableRadio" value="Table">
+          <label class="form-check-label" for="tableRadio">Table</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="gridChoice" id="cardRadio" value="Card">
+          <label class="form-check-label" for="cardRadio">Card</label>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div id="tableResult" class="col-12">
         <table class="table table-striped">
           <tr>
             <th>Title</th>
@@ -33,11 +45,16 @@
             <th>Quantity</th>
           </tr>
           <tbody id="searchResult">
-            
+
           </tbody>
 
         </table>
 
+      </div>
+      <div class="col-12">
+        <div class="row" id="cardResult">
+
+        </div>
       </div>
     </div>
   </div>
@@ -47,7 +64,18 @@
   <script>
     $(document).ready(function () {
       //All of my JS goes here
+      //$('#tableResult').hide();  //Optional to hide Table Header at start 
       $('#searchButton').click(searchSampleExpenses);
+      $('input[name=gridChoice]').click(function () {
+        var gridChoice = $('input[name=gridChoice]:checked').val();
+        if (gridChoice == 'Table') {
+          $('#tableResult').show();
+          $('#cardResult').hide();
+        } else {
+          $('#tableResult').hide();
+          $('#cardResult').show();
+        }
+      });
 
       function searchSampleExpenses() {
         console.log('Reading sharepoint data in progress ...');
@@ -55,17 +83,19 @@
         //Calling the Ajax readSharePointData Function 
         readSharePointData('SampleExpense')
           .then(
-            function(response){
+            function (response) {
               //success area 
               console.log('We got list data from SharePoint successfullty ', response);
               var items = response.value; // all the items that matched the title of the searched value
-              var resultHtml = '';
-              for(var i in items){
+              var gridChoice = $('input[name=gridChoice]:checked').val();
+              var resultHtmlTable = '';
+              var resultHtmlCard = '';
+              for (var i in items) {
                 var item = items[i];
                 //formatting date time to US Standard from ISO date time
                 var exDate = (new Date(item.ExpenseDate)).format('d');//format mm/dd/yyyy
                 //var exDate = (new Date(item.ExpenseDate)).format('D');//format ex Sunday, 29 November 2020
-                resultHtml += `
+                resultHtmlTable += `
                                 <tr>
                                   <td>${item.Title}</td>
                                   <td>${item.Department}</td>
@@ -74,25 +104,49 @@
                                   <td>${item.Quantity}</td>
                                 </tr>
                                 `;
+
+                //html for the cards <a href="url" class="card-link" target="_blank" > Title </a>
+                resultHtmlCard += `
+                              <div class="col-3 mb-1">
+                                <div class="card">
+                                  <div class="card-body">
+                                    <h5 class="card-title">${item.Title}</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">${item.Department}</h6>
+                                    <p class="card-text">${exDate}</p>
+                                    <a href="#" class="card-link">$${item.UnitPrice}</a>
+                                    <a href="#" class="card-link">${item.Quantity}</a>
+                                  </div>
+                                </div>
+                              </div>`;
               }
               //render the built html to the searchResult element 
-              $('#searchResult').html(resultHtml);
+              $('#searchResult').html(resultHtmlTable);
+              $('#cardResult').html(resultHtmlCard);
+
+              if (gridChoice == 'Table') {
+                $('#tableResult').show();
+                $('#cardResult').hide();
+              } else {
+                $('#tableResult').hide();
+                $('#cardResult').show();
+              }
+
               //TODO: code to generate the table 
             },
-            function(error){console.error('Ooops error occured', error);}
-            );
+            function (error) { console.error('Ooops error occured', error); }
+          );
       }
 
       //Reusable function 
-      function readSharePointData(listName) {        
+      function readSharePointData(listName) {
         var searchQuery = $('#searchText').val();
         var siteUrl = _spPageContextInfo.webAbsoluteUrl;
         //Exact Match
         // var apiUrl = siteUrl + "/_api/web/lists/getbytitle('" + listName + "')/items?$filter=Title eq '" + searchQuery + "' or Department eq '" + searchQuery + "'";
-        
+
         //Contains text in Title or in Department column
         var apiUrl = siteUrl + "/_api/web/lists/getbytitle('" + listName + "')/items?$filter=substringof('" + searchQuery + "',Title) or substringof('" + searchQuery + "',Department)";
-      
+
         return $.ajax({
           url: apiUrl,
           method: 'GET',
