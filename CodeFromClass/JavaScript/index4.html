@@ -15,7 +15,7 @@
     <div class="row">
       <div class="col">
         <div class="input-group mb-3">
-          <input type="search" id="searchText" class="form-control" placeholder="Search ...">
+          <input type="search" id="searchText" class="form-control" placeholder="Search by Title or Department ...">
           <div class="input-group-append">
             <input id="searchButton" class="btn btn-primary" type="button" value="Search">
           </div>
@@ -33,13 +33,7 @@
             <th>Quantity</th>
           </tr>
           <tbody id="searchResult">
-            <tr>
-              <td>Title 1</td>
-              <td>Dept 1</td>
-              <td>5/4/2020</td>
-              <td>$66.50</td>
-              <td>30</td>
-            </tr>
+            
           </tbody>
 
         </table>
@@ -68,11 +62,14 @@
               var resultHtml = '';
               for(var i in items){
                 var item = items[i];
+                //formatting date time to US Standard from ISO date time
+                var exDate = (new Date(item.ExpenseDate)).format('d');//format mm/dd/yyyy
+                //var exDate = (new Date(item.ExpenseDate)).format('D');//format ex Sunday, 29 November 2020
                 resultHtml += `
                                 <tr>
                                   <td>${item.Title}</td>
                                   <td>${item.Department}</td>
-                                  <td>${item.ExpenseDate}</td>
+                                  <td>${exDate}</td>
                                   <td>$${item.UnitPrice}</td>
                                   <td>${item.Quantity}</td>
                                 </tr>
@@ -90,7 +87,7 @@
       function readSharePointData(listName) {        
         var searchQuery = $('#searchText').val();
         var siteUrl = _spPageContextInfo.webAbsoluteUrl;
-        var apiUrl = siteUrl + "/_api/web/lists/getbytitle('" + listName + "')/items?$filter=Title eq '" + searchQuery + "'";
+        var apiUrl = siteUrl + "/_api/web/lists/getbytitle('" + listName + "')/items?$filter=Title eq '" + searchQuery + "' or Department eq '" + searchQuery + "'";
 
         return $.ajax({
           url: apiUrl,

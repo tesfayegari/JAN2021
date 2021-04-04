@@ -104,5 +104,7 @@ Syntax: ?$filter=columnName eq value (eq for equal neq not equal, lt for less th
 Example: Filter where title is equal to Home
 https://url/sites/demo/_api/web/lists/getbytitle('SampleExpense')/items?$filter=Title  eq 'Home'
 
+Example: Filter where title is equal to Home or Department eqauls to Home  
+https://url/sites/demo/_api/web/lists/getbytitle('SampleExpense')/items?$filter=Title  eq 'Home' or Department eq 'Home'
 
 
