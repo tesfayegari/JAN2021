@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "sp-fx-expense-react-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/spFxExpenseReact/SpFxExpenseReactWebPart.js",
+          "manifest": "./src/webparts/spFxExpenseReact/SpFxExpenseReactWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "SpFxExpenseReactWebPartStrings": "lib/webparts/spFxExpenseReact/loc/{locale}.js"
+  }
+}
