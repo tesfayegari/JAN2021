@@ -13,6 +13,7 @@
   },
   "externals": {},
   "localizedResources": {
-    "MtMultiViewWebPartStrings": "lib/webparts/mtMultiView/loc/{locale}.js"
+    "MtMultiViewWebPartStrings": "lib/webparts/mtMultiView/loc/{locale}.js",
+    "PropertyControlStrings": "node_modules/@pnp/spfx-property-controls/lib/loc/{locale}.js"
   }
 }

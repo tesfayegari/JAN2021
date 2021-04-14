@@ -8,8 +8,8 @@ import {
   PropertyPaneToggle
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
-
-import * as strings from 'MtMultiViewWebPartStrings';
+import { PropertyFieldListPicker, PropertyFieldListPickerOrderBy } from '@pnp/spfx-property-controls/lib/PropertyFieldListPicker';
+import { SPHttpClient, SPHttpClientResponse } from '@microsoft/sp-http';
 
 export interface IMtMultiViewWebPartProps {
   description: string;
@@ -19,21 +19,48 @@ export interface IMtMultiViewWebPartProps {
   test2: string;
   test3: boolean;
   sliderproperty: number;
+  lists: string;// | string[]; // Stores the list ID(s)
 }
 
 export default class MtMultiViewWebPart extends BaseClientSideWebPart<IMtMultiViewWebPartProps> {
 
   public render(): void {
-    this.domElement.innerHTML = `
-      <h1>This is so beautiful WebPart</h1>
-      <h3>Title of WebPart is : ${this.properties.description}</h3>
-      <h3>Full name is : ${this.properties.fullName}</h3>
-      <h3>Multilne of text is : ${this.properties.test}</h3>
-      <h3>checkbox value is : ${this.properties.test1}</h3>
-      <h3>Dropdown Value is : ${this.properties.test2}</h3>
-      <h3>Toggle value is : ${this.properties.test3}</h3>
-      <h3>Slide value is : ${this.properties.sliderproperty}</h3>
-      `;
+    let apiUrl: string;
+    if (this.properties.lists) {
+      apiUrl = `${this.context.pageContext.web.absoluteUrl}/_api/web/lists(guid'${this.properties.lists}')/items?$top=10`
+    }
+    let itemsHtml: string = '';
+
+    if (apiUrl) {
+      this.readItems(apiUrl)
+        .then((response: { value: any[] }): void => {
+          console.log(`Successfully loaded ${response.value.length} items`, response.value);
+          for (let item of response.value) {
+            itemsHtml += `<li> ${item.Title}</li>`;
+          }
+          this.domElement.innerHTML = `
+            <h1>The items in the selected list are:</h1>
+            <ul id="items">${itemsHtml}</ul>            
+            `;
+        }, (error: any): void => {
+          console.log('Loading all items failed with error: ' + error);
+        });
+    } else {
+      this.domElement.innerHTML = `
+            <h1>The items in the selected list are:</h1>            
+            <h3>Please Select List First</h3>
+            `;
+    }
+
+
+  }
+
+  private readItems(url) {
+    return this.context.spHttpClient.get(url,
+      SPHttpClient.configurations.v1)
+      .then((response: SPHttpClientResponse): Promise<{ value: any[] }> => {
+        return response.json();
+      });
   }
 
   protected get disableReactivePropertyChanges(): boolean {
@@ -49,7 +76,7 @@ export default class MtMultiViewWebPart extends BaseClientSideWebPart<IMtMultiVi
       pages: [
         {
           header: {
-            description:'Webpart Property Header'
+            description: 'Webpart Property Header'
           },
           groups: [
             {
@@ -57,6 +84,19 @@ export default class MtMultiViewWebPart extends BaseClientSideWebPart<IMtMultiVi
               groupFields: [
                 PropertyPaneTextField('description', {
                   label: 'Webpart Description'
+                }),
+                PropertyFieldListPicker('lists', {
+                  label: 'Select a list',
+                  selectedList: this.properties.lists,
+                  includeHidden: false,
+                  orderBy: PropertyFieldListPickerOrderBy.Title,
+                  disabled: false,
+                  onPropertyChange: this.onPropertyPaneFieldChanged.bind(this),
+                  properties: this.properties,
+                  context: this.context as any,
+                  onGetErrorMessage: null,
+                  deferredValidationTime: 0,
+                  key: 'listPickerFieldId'
                 }),
                 PropertyPaneTextField('fullName', {
                   label: 'Full Name'
@@ -75,20 +115,21 @@ export default class MtMultiViewWebPart extends BaseClientSideWebPart<IMtMultiVi
                     { key: '2', text: 'Two' },
                     { key: '3', text: 'Three' },
                     { key: '4', text: 'Four' }
-                  ]}),
+                  ]
+                }),
                 PropertyPaneToggle('test3', {
                   label: 'Toggle',
                   onText: 'On',
                   offText: 'Off'
                 }),
-                PropertyPaneSlider('sliderproperty',{  
-                  label:"Max Items",  
-                  min:5,  
-                  max:20,  
-                  value:5,  
-                  showValue:true,  
-                  step:1                
-                })  
+                PropertyPaneSlider('sliderproperty', {
+                  label: "Max Items",
+                  min: 5,
+                  max: 20,
+                  value: 5,
+                  showValue: true,
+                  step: 1
+                })
               ]
             }
           ]
