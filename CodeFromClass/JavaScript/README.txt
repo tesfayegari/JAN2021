@@ -110,4 +110,12 @@ https://url/sites/demo/_api/web/lists/getbytitle('SampleExpense')/items?$filter=
 Example: Filter where title contains a word 'test'  
 https://url/sites/demo/_api/web/lists/getbytitle('SampleExpense')/items?$filter=substringof('test',Title)
 
+odata called $expand is used with Lookup column and People or group column
+
+https://tgari2018.sharepoint.com/sites/demo5/_api/web/Lists/getbytitle('SampleExpense')/items?$select=*,Author/Title&$expand=Author
+
+https://tgari2018.sharepoint.com/sites/demo5/_api/web/Lists/getbytitle('SampleExpense')/items?$select=*,Author/Title,Editor/Title&$expand=Author,Editor
+
+https://tgari2018.sharepoint.com/sites/demo5/_api/web/Lists/getbytitle('SampleExpense')/items?$select=*,Author/Title,Author/EMail,Editor/Title&$expand=Author,Editor
+
 

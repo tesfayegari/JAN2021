@@ -35,19 +35,20 @@ export default class MtMultiViewWebPart extends BaseClientSideWebPart<IMtMultiVi
       this.readItems(apiUrl)
         .then((response: { value: any[] }): void => {
           console.log(`Successfully loaded ${response.value.length} items`, response.value);
+          
           for (let item of response.value) {
-            itemsHtml += `<li> ${item.Title}</li>`;
+            let titleLink = `<a href="/sites/demo5/Lists/SampleExpense/DispForm.aspx?ID=${item.ID}" target="_blank">${item.Title}</a>`;
+            itemsHtml += `<li> ${titleLink}</li>`;
           }
           this.domElement.innerHTML = `
-            <h1>The items in the selected list are:</h1>
+            <h1>The top 10 items in the selected list are:</h1>
             <ul id="items">${itemsHtml}</ul>            
             `;
         }, (error: any): void => {
           console.log('Loading all items failed with error: ' + error);
         });
     } else {
-      this.domElement.innerHTML = `
-            <h1>The items in the selected list are:</h1>            
+      this.domElement.innerHTML = `                       
             <h3>Please Select List First</h3>
             `;
     }
