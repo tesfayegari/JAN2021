@@ -7,21 +7,22 @@ import {
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 
-import * as strings from 'SpFxExpenseReactWebPartStrings';
-import SpFxExpenseReact from './components/SpFxExpenseReact';
-import { ISpFxExpenseReactProps } from './components/ISpFxExpenseReactProps';
+import * as strings from 'EmployeeBirthdaysWebPartStrings';
+import EmployeeBirthdays from './components/EmployeeBirthdays';
+import { IEmployeeBirthdaysProps } from './components/IEmployeeBirthdaysProps';
 
-export interface ISpFxExpenseReactWebPartProps {
+export interface IEmployeeBirthdaysWebPartProps {
   description: string;
 }
 
-export default class SpFxExpenseReactWebPart extends BaseClientSideWebPart<ISpFxExpenseReactWebPartProps> {
+export default class EmployeeBirthdaysWebPart extends BaseClientSideWebPart<IEmployeeBirthdaysWebPartProps> {
 
   public render(): void {
-    const element: React.ReactElement<ISpFxExpenseReactProps> = React.createElement(
-      SpFxExpenseReact,
+    const element: React.ReactElement<IEmployeeBirthdaysProps> = React.createElement(
+      EmployeeBirthdays,
       {
-        description: this.properties.description
+        description: this.properties.description,
+        context: this.context
       }
     );
 

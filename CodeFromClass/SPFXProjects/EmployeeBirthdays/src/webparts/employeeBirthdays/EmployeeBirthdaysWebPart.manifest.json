@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
-  "id": "2f9eece7-14be-4533-8bb2-0166df340818",
-  "alias": "SpFxExpenseReactWebPart",
+  "id": "fd3de211-6fc4-44f0-acdf-45d43f2c39a3",
+  "alias": "EmployeeBirthdaysWebPart",
   "componentType": "WebPart",
 
   // The "*" signifies that the version should be taken from the package.json
@@ -17,11 +17,11 @@
   "preconfiguredEntries": [{
     "groupId": "5c03119e-3074-46fd-976b-c60198311f70", // Other
     "group": { "default": "Other" },
-    "title": { "default": "SPFxExpenseReact" },
-    "description": { "default": "SPFxExpenseReact description" },
+    "title": { "default": "EmployeeBirthdays" },
+    "description": { "default": "EmployeeBirthdays description" },
     "officeFabricIconFontName": "Page",
     "properties": {
-      "description": "SPFxExpenseReact"
+      "description": "EmployeeBirthdays"
     }
   }]
 }

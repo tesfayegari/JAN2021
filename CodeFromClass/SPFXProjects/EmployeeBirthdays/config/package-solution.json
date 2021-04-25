@@ -1,10 +1,11 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
   "solution": {
-    "name": "sp-fx-react-expense-client-side-solution",
-    "id": "e3353a4a-ad58-4bd6-adac-8d5f68c9047a",
+    "name": "employee-birthdays-client-side-solution",
+    "id": "1c904bc6-2ffc-4809-b038-632b84f2fb0e",
     "version": "1.0.0.0",
     "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
     "isDomainIsolated": false,
     "developer": {
       "name": "",
@@ -15,6 +16,6 @@
     }
   },
   "paths": {
-    "zippedPackage": "solution/sp-fx-react-expense.sppkg"
+    "zippedPackage": "solution/employee-birthdays.sppkg"
   }
 }

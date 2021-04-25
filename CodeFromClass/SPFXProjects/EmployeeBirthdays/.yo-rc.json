@@ -3,8 +3,8 @@
     "isCreatingSolution": true,
     "environment": "spo",
     "version": "1.11.0",
-    "libraryName": "sp-fx-react-expense",
-    "libraryId": "e3353a4a-ad58-4bd6-adac-8d5f68c9047a",
+    "libraryName": "employee-birthdays",
+    "libraryId": "1c904bc6-2ffc-4809-b038-632b84f2fb0e",
     "packageManager": "npm",
     "isDomainIsolated": false,
     "componentType": "webpart"
